@@ -40,6 +40,12 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* 작은 모니터(<1600px) 자동 축소 — PPT 캡처(DevTools 1600 viewport)는 영향 X */
+  @media (max-width: 1599px) {
+    html { overflow-x: hidden; }
+    body { transform: scale(0.9); transform-origin: top left; }
+  }
+
   /* Header */
   .topbar {
     display: flex; align-items: center; justify-content: space-between;
