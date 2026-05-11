@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<title>Prub MD — 일본 한방 의료 정보 멤버십 · 빈뇨 검색</title>
+<style>
+  :root {
+    --navy: #0B2A4A;
+    --navy-2: #1A3A5C;
+    --orange: #F39A4A;
+    --orange-light: #FFF1E0;
+    --orange-deep: #B96A1A;
+    --green: #2BAE66;
+    --green-light: #EAF6EE;
+    --red: #D6453A;
+    --teal: #2BAFA6;
+    --gray-50: #FAFAFA;
+    --gray-100: #F2F4F7;
+    --gray-200: #E5E8EE;
+    --gray-300: #D0D5DD;
+    --gray-400: #98A2B3;
+    --gray-500: #667085;
+    --gray-700: #344054;
+    --gray-900: #101828;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    background: #fff;
+    color: var(--gray-900);
+    width: 1600px;
+    margin: 0 auto;
+    padding: 0 36px 20px;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === Topbar (sticky 고정) === */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0 13px;
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .logo {
+    height: 38px; width: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .brand-title { font-size: 17px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
+  .brand-sub { font-size: 12px; color: var(--gray-500); margin-top: 1px; }
+  .user-meta { display: flex; align-items: center; gap: 14px; font-size: 13px; color: var(--gray-700); }
+  .pill {
+    background: var(--orange-light); color: var(--orange-deep);
+    padding: 5px 11px; border-radius: 999px; font-weight: 600;
+    font-size: 12px;
+  }
+  .nav-tabs {
+    display: flex; gap: 18px;
+    font-size: 13px; color: var(--gray-500);
+  }
+  .nav-tabs .tab { padding: 4px 0; font-weight: 500; }
+  .nav-tabs .tab.active {
+    color: var(--navy); font-weight: 700;
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 8px;
+  }
+
+  /* === Search === */
+  .search-row {
+    margin: 14px 0 8px;
+    display: flex; gap: 10px; align-items: center;
+  }
+  .search-bar {
+    flex: 1;
+    display: flex; align-items: center;
+    background: var(--gray-50); border: 1.5px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+  .search-icon { font-size: 18px; color: var(--gray-500); }
+  .search-input {
+    flex: 0 1 auto; min-width: 70px;
+    font-size: 16px; color: var(--gray-900);
+    font-weight: 600; background: transparent; border: 0; outline: 0;
+  }
+  .related-tag {
+    display: inline-block;
+    background: #FFF; border: 1px solid var(--gray-300);
+    padding: 3px 10px; border-radius: 999px;
+    font-size: 11px; color: var(--gray-700); font-weight: 500;
+  }
+  .related-tag .plus { color: var(--orange); font-weight: 700; margin-right: 3px; }
+  .select {
+    background: #fff; border: 1.5px solid var(--gray-200);
+    border-radius: 10px; padding: 11px 14px; font-size: 12px;
+    color: var(--gray-700); font-weight: 500; cursor: pointer;
+    min-width: 120px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .recent {
+    font-size: 11px; color: var(--gray-500);
+    margin-bottom: 8px;
+  }
+  .recent b { color: var(--gray-700); margin-right: 6px; }
+  .recent .chip {
+    display: inline-block;
+    padding: 3px 9px; border-radius: 999px;
+    background: var(--gray-100); color: var(--gray-700);
+    margin-right: 4px;
+  }
+
+  /* === Main === */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .left, .right { display: flex; flex-direction: column; gap: 10px; }
+
+  /* === Section === */
+  .section {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .section-title {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 700; color: var(--navy);
+    margin-bottom: 11px;
+  }
+  .section-title .badge-src {
+    font-size: 11px; font-weight: 500;
+    background: var(--gray-100); color: var(--gray-700);
+    padding: 3px 9px; border-radius: 999px;
+  }
+  .section-title .featured-pill {
+    margin-left: auto;
+    font-size: 10px; font-weight: 700;
+    background: var(--orange); color: #fff;
+    padding: 3px 10px; border-radius: 999px;
+    letter-spacing: 0.5px;
+  }
+  .icon-square {
+    width: 22px; height: 22px; border-radius: 6px;
+    background: var(--orange-light); color: var(--orange);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800;
+  }
+
+  /* === Result Head === */
+  .result-title {
+    font-size: 15px; font-weight: 700; color: var(--gray-900);
+  }
+  .result-title b { color: var(--orange); }
+  .result-meta { font-size: 11px; color: var(--gray-500); }
+
+  /* === 한방 치료법 4종 === [강화] === */
+  .tx-section {
+    background: linear-gradient(180deg, #FFFBF4 0%, #fff 100%);
+    border: 1.5px solid var(--orange-light);
+    box-shadow: 0 2px 12px rgba(243, 154, 74, 0.06);
+  }
+  .tx-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  }
+  .tx-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 11px;
+    padding: 13px;
+    background: #fff;
+    position: relative;
+    display: flex; flex-direction: column;
+    gap: 10px;
+  }
+  .tx-head {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    align-items: center;
+    gap: 10px;
+  }
+  .tx-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800;
+  }
+  .tx-icon.t1 { background: #FFECEC; color: #B5302A; }
+  .tx-icon.t2 { background: var(--orange-light); color: var(--orange-deep); }
+  .tx-icon.t3 { background: var(--green-light); color: #1F7A3F; }
+  .tx-icon.t4 { background: #E8F1FB; color: #1457A6; }
+  .tx-name-block { min-width: 0; }
+  .tx-name { font-size: 14px; font-weight: 800; color: var(--navy); letter-spacing: -0.3px; }
+  .tx-name-jp { font-size: 10px; color: var(--gray-500); margin-top: 1px; }
+  .tx-status {
+    font-size: 9.5px; font-weight: 700;
+    padding: 3px 7px; border-radius: 4px;
+    background: var(--green-light); color: var(--green);
+    white-space: nowrap;
+  }
+  .tx-status.priv { background: var(--gray-100); color: var(--gray-500); }
+  .tx-detail {
+    font-size: 13px; color: var(--gray-700);
+    line-height: 1.55;
+    padding: 0 1px;
+    min-height: 64px;
+  }
+  .tx-detail b { color: var(--navy); }
+  .tx-metrics {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  }
+  .tx-metric {
+    border-radius: 9px;
+    padding: 8px 9px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    text-align: center;
+  }
+  .tx-metric.primary {
+    background: linear-gradient(180deg, var(--orange) 0%, #E78640 100%);
+    color: #fff; border-color: var(--orange-deep);
+  }
+  .tx-metric .v {
+    font-size: 22px; font-weight: 800; letter-spacing: -1px;
+    line-height: 1.05;
+    color: var(--navy);
+  }
+  .tx-metric .v span { font-size: 13px; font-weight: 700; }
+  .tx-metric.primary .v { color: #fff; }
+  .tx-metric .l {
+    font-size: 10px;
+    color: var(--gray-500);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .tx-metric.primary .l { color: rgba(255,255,255,0.92); font-weight: 600; }
+  .tx-footer {
+    font-size: 11px; color: var(--gray-500);
+    line-height: 1.5;
+    padding-top: 8px;
+    border-top: 1px dashed var(--gray-200);
+  }
+  .tx-footer b { color: var(--gray-700); font-weight: 700; }
+  .tx-footer .dot { color: var(--orange); margin-right: 4px; }
+
+  /* === Guideline (compact) === */
+  .guideline {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  }
+  .gl-card {
+    border-left: 3px solid var(--orange);
+    padding: 7px 11px;
+    background: var(--gray-50);
+    border-radius: 0 8px 8px 0;
+  }
+  .gl-rank { font-size: 10.5px; color: var(--orange); font-weight: 700; letter-spacing: 0.5px; }
+  .gl-name { font-size: 14px; font-weight: 700; color: var(--navy); margin: 2px 0 3px; }
+  .gl-desc { font-size: 11.5px; color: var(--gray-500); line-height: 1.5; }
+
+  /* === Prescription cards === */
+  .rx-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  }
+  .rx-card {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 11px;
+    padding: 12px;
+    position: relative;
+  }
+  .rx-card.featured {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px var(--orange-light);
+  }
+  .rx-card-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .rx-tj {
+    font-size: 10px; font-weight: 700; color: var(--orange);
+    background: var(--orange-light);
+    padding: 3px 8px; border-radius: 999px;
+    letter-spacing: 0.5px;
+  }
+  .rx-rank {
+    font-size: 9px; color: var(--gray-500);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .rx-rank.featured { color: var(--orange); font-weight: 700; }
+  .rx-name-kr {
+    font-size: 17px; font-weight: 800; color: var(--navy);
+    letter-spacing: -0.5px;
+  }
+  .rx-name-jp {
+    font-size: 11px; color: var(--gray-500);
+    margin-top: 1px;
+  }
+  .rx-effect {
+    font-size: 11.5px; color: var(--gray-700);
+    margin: 6px 0 6px;
+    line-height: 1.45;
+  }
+  .rx-price {
+    display: flex; align-items: baseline; gap: 4px;
+    padding-top: 6px;
+    border-top: 1px dashed var(--gray-200);
+    margin-bottom: 8px;
+  }
+  .rx-price .label { font-size: 11px; color: var(--gray-500); }
+  .rx-price .value { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+  .rx-price .unit { font-size: 11px; color: var(--gray-500); }
+  .rx-badges {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  }
+  .badge {
+    display: flex; align-items: center; gap: 5px;
+    padding: 5px 7px;
+    border-radius: 6px;
+    font-size: 10.5px;
+    line-height: 1.15;
+  }
+  .b-pmda  { background: #E8F1FB; color: #1457A6; }
+  .b-jstage{ background: #EAF6EE; color: #1F7A3F; }
+  .b-kegg  { background: #F2EBF8; color: #6B2E9C; }
+  .b-cinii { background: #FFF4E5; color: #B86A0C; }
+  .b-umin  { background: #FFECEC; color: #B5302A; }
+  .badge .ico { font-weight: 800; width: 11px; text-align: center; }
+  .badge .num { margin-left: auto; font-weight: 700; }
+
+  /* === OTC table === */
+  .otc-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .otc-table thead th {
+    text-align: left;
+    font-size: 11px; font-weight: 600;
+    color: var(--gray-500); letter-spacing: 0.4px;
+    padding: 7px 8px;
+    border-bottom: 1px solid var(--gray-200);
+    background: var(--gray-50);
+  }
+  .otc-table td {
+    padding: 11px 8px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: middle;
+  }
+  .otc-table tr.featured td {
+    background: linear-gradient(90deg, var(--orange-light) 0%, transparent 100%);
+  }
+  .otc-table .brand {
+    font-weight: 700; color: var(--navy);
+  }
+  .otc-table .brand-sub {
+    font-size: 10.5px; color: var(--gray-500); margin-top: 2px; font-weight: 500;
+  }
+  .otc-table .class {
+    display: inline-block;
+    font-size: 10.5px; font-weight: 700;
+    color: var(--orange);
+    background: #fff;
+    padding: 3px 7px; border-radius: 4px;
+    border: 1px solid var(--orange);
+  }
+  .otc-price-cell {
+    font-weight: 700; color: var(--navy); font-size: 13px;
+  }
+  .otc-price-cell .unit { font-size: 10.5px; color: var(--gray-500); margin-left: 2px; font-weight: 500; }
+  .sales-bar-wrap {
+    width: 100%; height: 8px; background: var(--gray-100);
+    border-radius: 4px; overflow: hidden; position: relative;
+  }
+  .sales-bar {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, var(--orange) 0%, #F8B26E 100%);
+  }
+  .sales-num { font-size: 12px; font-weight: 700; color: var(--gray-700); margin-top: 4px; }
+  .sales-num .unit { font-size: 10.5px; color: var(--gray-500); font-weight: 500; }
+
+  /* === Composition Hover === */
+  .composition-trigger {
+    position: relative; cursor: help;
+    display: inline-block;
+  }
+  .composition-trigger .ico {
+    display: inline-block;
+    padding: 3px 9px; border-radius: 6px;
+    background: var(--gray-100); color: var(--gray-700);
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+  }
+  .composition-trigger:hover .ico {
+    background: var(--navy); color: #fff;
+  }
+  .composition-tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px); right: 0;
+    transform: translateX(0);
+    width: 280px;
+    background: var(--navy); color: #fff;
+    padding: 11px 13px; border-radius: 9px;
+    font-size: 11px; line-height: 1.6;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  }
+  .composition-tooltip::after {
+    content: ''; position: absolute;
+    top: 100%; right: 18px;
+    border: 6px solid transparent;
+    border-top-color: var(--navy);
+  }
+  .composition-tooltip .title {
+    font-size: 10px; font-weight: 700; color: var(--orange);
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .composition-tooltip .ingredients {
+    font-size: 11px; line-height: 1.6; color: #fff;
+  }
+  .composition-tooltip .ingredients .g {
+    color: var(--orange-light); font-weight: 600; font-size: 10px;
+  }
+  .composition-trigger:hover .composition-tooltip {
+    display: block;
+  }
+
+  /* === Paper credibility === */
+  .paper-credibility {
+    display: grid; grid-template-columns: 118px 1fr;
+    gap: 14px;
+  }
+  .paper-thumb {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+    border-radius: 8px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: #fff;
+    padding: 12px 8px;
+  }
+  .paper-thumb .lab { font-size: 9px; opacity: 0.8; letter-spacing: 1px; }
+  .paper-thumb .src { font-size: 14px; font-weight: 800; margin-top: 2px; }
+  .paper-thumb .yr { font-size: 10px; opacity: 0.7; margin-top: 4px; }
+  .paper-thumb .meta { font-size: 9px; opacity: 0.75; margin-top: 8px; line-height: 1.4; text-align: center; }
+  .paper-body { display: flex; flex-direction: column; gap: 8px; }
+  .paper-title {
+    font-size: 12.5px; font-weight: 700; color: var(--navy);
+    line-height: 1.4;
+  }
+  .paper-metrics {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+  .metric {
+    background: var(--gray-50);
+    border-radius: 7px;
+    padding: 6px 8px;
+    text-align: center;
+  }
+  .metric .lab { font-size: 10px; color: var(--gray-500); letter-spacing: 0.3px; }
+  .metric .val { font-size: 15px; font-weight: 800; color: var(--navy); line-height: 1.2; margin-top: 2px; }
+  .metric.green .val { color: var(--green); }
+  .metric.orange .val { color: var(--orange); }
+  .metric.red .val { color: var(--red); }
+  .metric .val .small { font-size: 11px; }
+  .paper-comment {
+    background: var(--orange-light);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 7px 7px 0;
+    padding: 9px 12px;
+    font-size: 12px; color: var(--gray-700);
+    line-height: 1.6;
+  }
+  .paper-comment b { color: var(--orange-deep); }
+
+  /* 논문 다운로드 버튼 */
+  .paper-actions {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    margin-top: 8px;
+  }
+  .paper-btn {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .paper-btn.primary {
+    background: var(--orange);
+    color: #fff;
+    border: 1.5px solid var(--orange);
+  }
+  .paper-btn.primary:hover { background: var(--orange-deep); border-color: var(--orange-deep); }
+  .paper-btn.secondary {
+    background: #fff;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+  }
+  .paper-btn.secondary:hover { background: var(--navy); color: #fff; }
+  .paper-btn .arrow {
+    font-size: 14px; font-weight: 800;
+  }
+
+  /* === Right side panels === */
+  .stats-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    position: relative;
+  }
+  .stats-card .title {
+    font-size: 11px; opacity: 0.75; letter-spacing: 1px;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .stats-card .as-of {
+    position: absolute; top: 15px; right: 15px;
+    font-size: 10px; opacity: 0.7;
+    background: rgba(255,255,255,0.12);
+    padding: 3px 8px; border-radius: 999px;
+    font-weight: 600; letter-spacing: 0.3px;
+  }
+  .stats-card .topnum {
+    display: flex; align-items: baseline; gap: 4px;
+    margin-top: 9px;
+  }
+  .stats-card .topnum .v { font-size: 30px; font-weight: 800; letter-spacing: -1px; }
+  .stats-card .topnum .u { font-size: 12px; opacity: 0.78; }
+  .stats-card .label {
+    font-size: 12px; opacity: 0.9; margin-top: 3px;
+  }
+  .stats-card .grid-2 {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    margin-top: 11px;
+    padding-top: 11px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .stats-card .stat-cell .v {
+    font-size: 17px; font-weight: 800;
+  }
+  .stats-card .stat-cell .l {
+    font-size: 10.5px; opacity: 0.75;
+  }
+  .stats-card .source {
+    margin-top: 9px;
+    font-size: 10px; opacity: 0.55;
+  }
+
+  /* trend bars */
+  .trend-card { padding: 14px 15px; position: relative; }
+  .trend-card .period-tag {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 10px; font-weight: 700;
+    color: var(--orange-deep); background: var(--orange-light);
+    padding: 3px 8px; border-radius: 999px;
+    letter-spacing: 0.3px;
+  }
+  .trend-card .row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 0;
+  }
+  .trend-card .row .name { font-size: 12px; color: var(--gray-700); min-width: 88px; font-weight: 600; }
+  .trend-card .row .bar-wrap { flex: 1; height: 9px; background: var(--gray-100); border-radius: 4px; overflow: hidden; }
+  .trend-card .row .bar { height: 100%; background: var(--orange); border-radius: 4px; }
+  .trend-card .row .v { font-size: 12px; font-weight: 700; color: var(--navy); min-width: 52px; text-align: right; }
+  .trend-card .source { font-size: 10px; color: var(--gray-400); margin-top: 7px; }
+
+  /* === Prub PB 섹션 (오림산 단독, 1-column 전체 폭) === */
+  .prub-section {
+    background: linear-gradient(135deg, #FFF8EE 0%, #fff 100%);
+    border: 1.5px solid var(--orange);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .prub-section .section-title { color: var(--orange-deep); }
+  .prub-layout {
+    display: grid; grid-template-columns: 1fr; gap: 12px;
+  }
+
+  .pb-main {
+    background: #fff;
+    border: 1.5px solid var(--orange);
+    border-radius: 12px;
+    padding: 16px 18px;
+    position: relative;
+  }
+  .pb-main .rank {
+    font-size: 11px; color: var(--orange); font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .pb-main .name {
+    font-size: 24px; font-weight: 800; color: var(--navy);
+    margin-top: 3px; letter-spacing: -0.5px;
+  }
+  .pb-main .name-en {
+    font-size: 12.5px; color: var(--gray-500);
+    margin-top: 2px;
+  }
+  .pb-disease-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    margin: 12px 0;
+  }
+  .pb-disease, .pb-clinic {
+    padding: 11px 13px;
+    background: var(--gray-50);
+    border-radius: 9px;
+  }
+  .pb-disease .l, .pb-clinic .l {
+    font-size: 10.5px; color: var(--gray-500);
+    font-weight: 700; letter-spacing: 0.5px;
+  }
+  .pb-disease .v {
+    font-size: 14px; color: var(--navy); font-weight: 700;
+    margin-top: 4px; line-height: 1.4;
+  }
+  .pb-clinic .v {
+    font-size: 14px; color: var(--navy); font-weight: 700;
+    margin-top: 4px;
+  }
+  .pb-clinic .v .h { color: var(--orange-deep); }
+
+  .pb-price-cmp {
+    margin: 10px 0;
+    padding: 10px 12px;
+    background: var(--navy);
+    border-radius: 8px;
+    color: #fff;
+  }
+  .pb-price-cmp .lab {
+    font-size: 9.5px; opacity: 0.65;
+    font-weight: 700; letter-spacing: 0.5px;
+    margin-bottom: 5px;
+  }
+  .pb-price-row {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px;
+    align-items: center;
+  }
+  .pb-price-row .cell { text-align: center; }
+  .pb-price-row .cell .top { font-size: 9.5px; opacity: 0.7; }
+  .pb-price-row .cell .num { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; margin-top: 1px; }
+  .pb-price-row .cell.kr .num { color: var(--orange); }
+  .pb-price-row .cell .sub { font-size: 9px; opacity: 0.6; margin-top: 1px; }
+  .pb-price-row .arrow { font-size: 16px; color: var(--orange); }
+
+  .pb-pipeline {
+    display: flex; gap: 6px;
+    margin-top: 8px;
+    font-size: 12.5px;
+  }
+  .pipe-tag {
+    flex: 1;
+    padding: 10px 12px; border-radius: 7px;
+    background: var(--gray-100); color: var(--gray-500);
+    text-align: center; font-weight: 600;
+  }
+  .pipe-tag.done { background: var(--green-light); color: var(--green); }
+  .pipe-tag.active { background: var(--orange); color: #fff; font-weight: 700; }
+
+  /* 우측 보조 카드 */
+  .pb-side { display: flex; flex-direction: column; gap: 8px; }
+  .pb-side-card {
+    background: #fff;
+    border: 1px solid var(--orange-light);
+    border-radius: 10px;
+    padding: 11px 13px;
+  }
+  .pb-side-card .title {
+    font-size: 10px; color: var(--orange-deep);
+    font-weight: 700; letter-spacing: 0.5px;
+    margin-bottom: 7px;
+  }
+  .pb-side-card .body {
+    font-size: 11.5px; color: var(--gray-700);
+    line-height: 1.55;
+  }
+  .pb-side-card .body b { color: var(--navy); font-weight: 700; }
+  .pb-side-card .body .ok { color: var(--green); margin-right: 3px; font-weight: 700; }
+  .pb-side-card.experience { background: linear-gradient(135deg, var(--orange-light) 0%, #fff 100%); }
+
+  .ms-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+    margin-top: 6px;
+  }
+  .ms-grid-4 {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px;
+    margin-top: 6px;
+  }
+  .ms-cell {
+    background: var(--gray-50);
+    padding: 6px 8px;
+    border-radius: 6px;
+  }
+  .ms-when { font-size: 9px; color: var(--orange-deep); font-weight: 700; letter-spacing: 0.3px; }
+  .ms-what { font-size: 11px; color: var(--navy); font-weight: 600; margin-top: 1px; }
+
+  /* footer */
+  .footer {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--gray-200);
+    display: flex; justify-content: space-between;
+    font-size: 10px; color: var(--gray-500);
+  }
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="brand">
+    <img src="prub_logo.png" class="logo" alt="Prub" />
+    <div>
+      <div class="brand-title">MD — <span style="font-weight:500;color:var(--gray-500);font-size:13px;">일본 한방 의료 정보 멤버십</span></div>
+      <div class="brand-sub">한의사 전용 · 일본 후생노동성 PMDA + 5개 학술 DB + 시장 통계 통합</div>
+    </div>
+  </div>
+  <div class="nav-tabs">
+    <div class="tab active">처방 정보</div>
+    <div class="tab">한방 치료법</div>
+    <div class="tab">임상 케이스</div>
+    <div class="tab">시장 동향</div>
+    <div class="tab">학술 커뮤니티</div>
+  </div>
+  <div class="user-meta">
+    <span>설명한의원 · 박○○ 원장</span>
+    <span class="pill">Pro Membership</span>
+  </div>
+</div>
+
+<!-- Search row -->
+<div class="search-row">
+  <div class="search-bar">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" value="빈뇨" style="width:60px;" />
+    <span class="related-tag"><span class="plus">+</span> 배뇨통</span>
+    <span class="related-tag"><span class="plus">+</span> 잔뇨감</span>
+    <span class="related-tag"><span class="plus">+</span> 야간뇨</span>
+    <span style="font-size:10px;color:var(--gray-500);margin-left:8px;">동반 증상 자동 확장</span>
+  </div>
+  <div class="select">전체 카테고리 <span style="color:var(--gray-500);">⌄</span></div>
+  <div class="select">시니어 (60+) <span style="color:var(--gray-500);">⌄</span></div>
+</div>
+<div class="recent">
+  <b>최근 검색</b>
+  <span class="chip">갱년기 안면홍조</span>
+  <span class="chip">하지 부종</span>
+  <span class="chip">오십견</span>
+  <span class="chip">PMS 복통</span>
+  <span class="chip">수족냉증</span>
+  <span class="chip">기립성 어지럼증</span>
+</div>
+
+<!-- Main grid -->
+<div class="main">
+
+  <!-- LEFT -->
+  <div class="left">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:0 4px;">
+      <div class="result-title">검색 결과 — <b>"빈뇨"</b> <span style="color:var(--gray-500);font-weight:500;font-size:12px;">+ 배뇨통 · 잔뇨감 · 야간뇨</span></div>
+      <div class="result-meta">처방 16종 · 논문 142편 · OTC 38품목 · 임상 증례 87건</div>
+    </div>
+
+    <!-- 한방 치료법 4종 (강화) -->
+    <div class="section tx-section">
+      <div class="section-title">
+        <span class="icon-square">🩺</span>
+        일본 표준 한방 치료법 (Kampo Treatment Protocols)
+        <span class="badge-src">출처: 일본동양의학회 JSOM · 일본비뇨기과학회 가이드라인 2023</span>
+        <span class="featured-pill">CORE INSIGHT</span>
+      </div>
+      <div class="tx-grid">
+
+        <!-- 침 -->
+        <div class="tx-card">
+          <div class="tx-head">
+            <div class="tx-icon t1">針</div>
+            <div class="tx-name-block">
+              <div class="tx-name">침 치료</div>
+              <div class="tx-name-jp">鍼治療 · Acupuncture</div>
+            </div>
+            <div class="tx-status">NHI 보험</div>
+          </div>
+          <div class="tx-detail">
+            <b>중극·관원·삼음교·신유</b> 자극으로<br/>
+            골반저 신경 활성화. OAB 환자의<br/>
+            야간뇨 횟수를 직접 개선.
+          </div>
+          <div class="tx-metrics">
+            <div class="tx-metric primary">
+              <div class="v">-47<span>%</span></div>
+              <div class="l">야간뇨 횟수 감소</div>
+            </div>
+            <div class="tx-metric">
+              <div class="v">N=87</div>
+              <div class="l">시니어 RCT</div>
+            </div>
+          </div>
+          <div class="tx-footer">
+            <span class="dot">●</span> <b>일본 동양의학회 RCT 2023</b><br/>
+            · 8주 추적 · 부작용 0건
+          </div>
+        </div>
+
+        <!-- 뜸 -->
+        <div class="tx-card">
+          <div class="tx-head">
+            <div class="tx-icon t2">灸</div>
+            <div class="tx-name-block">
+              <div class="tx-name">뜸 치료</div>
+              <div class="tx-name-jp">灸治療 · Moxibustion</div>
+            </div>
+            <div class="tx-status">NHI 보험</div>
+          </div>
+          <div class="tx-detail">
+            <b>관원·삼음교 온구</b>로 골반저<br/>
+            혈류 개선. 야간 다회 빈뇨 환자에게<br/>
+            비약물 1차 옵션으로 권장.
+          </div>
+          <div class="tx-metrics">
+            <div class="tx-metric primary">
+              <div class="v">78<span>%</span></div>
+              <div class="l">야간뇨 1회 이하 회복</div>
+            </div>
+            <div class="tx-metric">
+              <div class="v">N=42</div>
+              <div class="l">4주 임상</div>
+            </div>
+          </div>
+          <div class="tx-footer">
+            <span class="dot">●</span> <b>Kobe Univ 2021 임상 시험</b><br/>
+            · 야간 3회+ 빈뇨 대상 · 부작용 0건
+          </div>
+        </div>
+
+        <!-- 지압·도수 -->
+        <div class="tx-card">
+          <div class="tx-head">
+            <div class="tx-icon t3">手</div>
+            <div class="tx-name-block">
+              <div class="tx-name">지압 · 도수</div>
+              <div class="tx-name-jp">指圧 · 手技 · Pelvic Floor</div>
+            </div>
+            <div class="tx-status priv">자비</div>
+          </div>
+          <div class="tx-detail">
+            <b>골반저근 케겔 + 천골 마사지</b>.<br/>
+            가정 자가 관리 병행으로 한방 약물<br/>
+            효과 극대화. 시니어 1차 권장.
+          </div>
+          <div class="tx-metrics">
+            <div class="tx-metric primary">
+              <div class="v">-65<span>%</span></div>
+              <div class="l">요실금 발생 감소</div>
+            </div>
+            <div class="tx-metric">
+              <div class="v">12<span>주</span></div>
+              <div class="l">시행 기간</div>
+            </div>
+          </div>
+          <div class="tx-footer">
+            <span class="dot">●</span> <b>일본 비뇨기과학회 2023</b><br/>
+            · OAB 환자 케겔 권장 등급 A
+          </div>
+        </div>
+
+        <!-- 한방약 -->
+        <div class="tx-card" style="border-color: var(--orange); box-shadow: 0 0 0 2px var(--orange-light);">
+          <div class="tx-head">
+            <div class="tx-icon t4">薬</div>
+            <div class="tx-name-block">
+              <div class="tx-name">한방약</div>
+              <div class="tx-name-jp">漢方薬 · Kampo Medicine</div>
+            </div>
+            <div class="tx-status">NHI 보험</div>
+          </div>
+          <div class="tx-detail">
+            <b>五淋散 · 猪苓湯 · 牛車腎気丸 등</b><br/>
+            NHI 급여 풀셋. 시니어 1차 처방으로<br/>
+            안전성·유효성 동시 확보.
+          </div>
+          <div class="tx-metrics">
+            <div class="tx-metric primary">
+              <div class="v">-52<span>%</span></div>
+              <div class="l">야간뇨 횟수 (오림산)</div>
+            </div>
+            <div class="tx-metric">
+              <div class="v">N=142</div>
+              <div class="l">12주 RCT</div>
+            </div>
+          </div>
+          <div class="tx-footer">
+            <span class="dot">●</span> <b>Tsumura R&amp;D 2022</b><br/>
+            · p&lt;0.01 · 부작용 0건
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- JSOM 가이드라인 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon-square">📘</span>
+        일본 표준 한방 처방 가이드라인 (시니어 · 빈뇨 · 과민성 방광)
+        <span class="badge-src">출처: 후생노동성 · JSOM 2023 임상지침</span>
+      </div>
+      <div class="guideline">
+        <div class="gl-card">
+          <div class="gl-rank">1ST LINE</div>
+          <div class="gl-name">오림산 (五淋散) · Tsumura #056</div>
+          <div class="gl-desc">빈뇨 · 배뇨통 · 잔뇨감 표준 1차 처방. 시니어 안전성 양호. 일본 NHI 급여 1986년 등재.</div>
+        </div>
+        <div class="gl-card">
+          <div class="gl-rank">2ND LINE</div>
+          <div class="gl-name">저령탕 (猪苓湯) · Tsumura #040</div>
+          <div class="gl-desc">요량 감소 + 배뇨 곤란형. 오림산 무효 시 전환 1순위.</div>
+        </div>
+        <div class="gl-card">
+          <div class="gl-rank">SENIOR LINE</div>
+          <div class="gl-name">청심연자음 (清心蓮子飲) · TJ-111</div>
+          <div class="gl-desc">전신 권태감 + 빈뇨 동반 시니어. 우차신기환과 병행 옵션.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 인기 처방 TOP 3 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon-square">💊</span>
+        인기 처방 TOP 3 (시니어 비뇨 카테고리)
+        <span class="badge-src">PB Master DB · 일본 처방 빈도 + 매출액 가중 랭킹</span>
+      </div>
+      <div class="rx-grid">
+
+        <div class="rx-card featured">
+          <div class="rx-card-head">
+            <span class="rx-tj">TJ-56</span>
+            <span class="rx-rank featured">★ #1 FEATURED</span>
+          </div>
+          <div class="rx-name-kr">오림산</div>
+          <div class="rx-name-jp">五淋散 (ごりんさん) · Gorinsan</div>
+          <div class="rx-effect">빈뇨 · 배뇨통 · 잔뇨감 · 소변 탁함</div>
+          <div class="rx-price">
+            <span class="label">의료용 1일가</span>
+            <span class="value">127.5</span>
+            <span class="unit">엔 · 츠무라 의료용 엑스 과립</span>
+          </div>
+          <div class="rx-badges">
+            <div class="badge b-pmda"><span class="ico">🏛</span>PMDA<span class="num">✓</span></div>
+            <div class="badge b-jstage"><span class="ico">📚</span>J-STAGE<span class="num">18편</span></div>
+            <div class="badge b-kegg"><span class="ico">⚙</span>KEGG<span class="num">D06959</span></div>
+            <div class="badge b-cinii"><span class="ico">📖</span>CiNii<span class="num">34편</span></div>
+            <div class="badge b-umin" style="grid-column:1/-1;"><span class="ico">🩺</span>UMIN 임상시험<span class="num">RCT 2건 + 관찰 5건</span></div>
+          </div>
+        </div>
+
+        <div class="rx-card">
+          <div class="rx-card-head">
+            <span class="rx-tj">TJ-40</span>
+            <span class="rx-rank">#2</span>
+          </div>
+          <div class="rx-name-kr">저령탕</div>
+          <div class="rx-name-jp">猪苓湯 (ちょれいとう)</div>
+          <div class="rx-effect">요량 감소 · 배뇨 곤란 · 잔뇨감</div>
+          <div class="rx-price">
+            <span class="label">의료용 1일가</span>
+            <span class="value">95.0</span>
+            <span class="unit">엔</span>
+          </div>
+          <div class="rx-badges">
+            <div class="badge b-pmda"><span class="ico">🏛</span>PMDA<span class="num">✓</span></div>
+            <div class="badge b-jstage"><span class="ico">📚</span>J-STAGE<span class="num">12편</span></div>
+            <div class="badge b-kegg"><span class="ico">⚙</span>KEGG<span class="num">D07015</span></div>
+            <div class="badge b-cinii"><span class="ico">📖</span>CiNii<span class="num">21편</span></div>
+            <div class="badge b-umin" style="grid-column:1/-1;"><span class="ico">🩺</span>UMIN 임상시험<span class="num">관찰 3건</span></div>
+          </div>
+        </div>
+
+        <div class="rx-card">
+          <div class="rx-card-head">
+            <span class="rx-tj">TJ-111</span>
+            <span class="rx-rank">#3 / Senior</span>
+          </div>
+          <div class="rx-name-kr">청심연자음</div>
+          <div class="rx-name-jp">清心蓮子飲 (せいしんれんしいん)</div>
+          <div class="rx-effect">전신 권태 + 빈뇨 · 잔뇨감 (시니어)</div>
+          <div class="rx-price">
+            <span class="label">의료용 1일가</span>
+            <span class="value">183.0</span>
+            <span class="unit">엔</span>
+          </div>
+          <div class="rx-badges">
+            <div class="badge b-pmda"><span class="ico">🏛</span>PMDA<span class="num">✓</span></div>
+            <div class="badge b-jstage"><span class="ico">📚</span>J-STAGE<span class="num">9편</span></div>
+            <div class="badge b-kegg"><span class="ico">⚙</span>KEGG<span class="num">D07054</span></div>
+            <div class="badge b-cinii"><span class="ico">📖</span>CiNii<span class="num">15편</span></div>
+            <div class="badge b-umin" style="grid-column:1/-1;"><span class="ico">🩺</span>UMIN 임상시험<span class="num">관찰 2건</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- OTC 시장 (모든 행 hover) -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon-square">🛒</span>
+        일본 OTC 시장 — 연간 판매량 + 인기도 (시니어 비뇨 카테고리)
+        <span class="badge-src">Retail Market Intel v2.0 · 일본 드럭스토어 출하 데이터 2024</span>
+      </div>
+      <table class="otc-table">
+        <thead>
+          <tr>
+            <th>브랜드 / 제품</th>
+            <th style="width:80px;">분류</th>
+            <th style="width:120px;">가격 / 용량</th>
+            <th style="width:300px;">연간 판매량 (2024 추정)</th>
+            <th style="width:80px;">구성</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr class="featured">
+            <td>
+              <div class="brand">코타로 오림산 엑스 정 N</div>
+              <div class="brand-sub">五淋散エキス錠N「コタロー」 · 코타로漢方薬品</div>
+            </td>
+            <td><span class="class">제2류</span></td>
+            <td><div class="otc-price-cell">¥1,430<span class="unit"> / 60정</span></div></td>
+            <td>
+              <div class="sales-bar-wrap"><div class="sales-bar" style="width:88%;"></div></div>
+              <div class="sales-num">약 142만 박스 / 년 <span class="unit">· 카테고리 1위</span></div>
+            </td>
+            <td>
+              <span class="composition-trigger">
+                <span class="ico">생약 11</span>
+                <span class="composition-tooltip">
+                  <div class="title">五淋散 구성 11종</div>
+                  <div class="ingredients">
+                    복령 <span class="g">3.0g</span> · 당귀 <span class="g">1.5g</span> · 황금 <span class="g">1.5g</span> · 감초 <span class="g">1.5g</span> · 작약 <span class="g">1.0g</span> · 산치자 <span class="g">1.0g</span> · 지황 <span class="g">1.5g</span> · 택사 <span class="g">1.5g</span> · 목통 <span class="g">1.5g</span> · 활석 <span class="g">1.5g</span> · 차전자 <span class="g">1.5g</span>
+                  </div>
+                </span>
+              </span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="brand">클라시에 저령탕</div>
+              <div class="brand-sub">クラシエ猪苓湯エキス顆粒 · クラシエ薬品</div>
+            </td>
+            <td><span class="class">제2류</span></td>
+            <td><div class="otc-price-cell">¥1,341<span class="unit"> / 24포</span></div></td>
+            <td>
+              <div class="sales-bar-wrap"><div class="sales-bar" style="width:72%;"></div></div>
+              <div class="sales-num">약 118만 박스 / 년</div>
+            </td>
+            <td>
+              <span class="composition-trigger">
+                <span class="ico">생약 5</span>
+                <span class="composition-tooltip">
+                  <div class="title">猪苓湯 구성 5종</div>
+                  <div class="ingredients">
+                    택사 <span class="g">5.0g</span> · 저령 <span class="g">4.5g</span> · 복령 <span class="g">4.5g</span> · 활석 <span class="g">4.5g</span> · 아교 <span class="g">3.0g</span>
+                  </div>
+                </span>
+              </span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="brand">크라시에 청심연자음</div>
+              <div class="brand-sub">クラシエ清心蓮子飲エキス · クラシエ</div>
+            </td>
+            <td><span class="class">제2류</span></td>
+            <td><div class="otc-price-cell">¥9,900<span class="unit"> / 168정</span></div></td>
+            <td>
+              <div class="sales-bar-wrap"><div class="sales-bar" style="width:45%;"></div></div>
+              <div class="sales-num">약 74만 박스 / 년 <span class="unit">· 시니어 프리미엄</span></div>
+            </td>
+            <td>
+              <span class="composition-trigger">
+                <span class="ico">생약 9</span>
+                <span class="composition-tooltip">
+                  <div class="title">清心蓮子飲 구성 9종</div>
+                  <div class="ingredients">
+                    연자육 <span class="g">4.0g</span> · 복령 <span class="g">4.0g</span> · 황금 <span class="g">3.0g</span> · 차전자 <span class="g">3.0g</span> · 인삼 <span class="g">3.0g</span> · 황기 <span class="g">3.0g</span> · 지골피 <span class="g">3.0g</span> · 맥문동 <span class="g">3.0g</span> · 자감초 <span class="g">1.5g</span>
+                  </div>
+                </span>
+              </span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="brand">크라시에 팔미지황환</div>
+              <div class="brand-sub">クラシエ八味地黄丸料 · クラシエ</div>
+            </td>
+            <td><span class="class">제2류</span></td>
+            <td><div class="otc-price-cell">¥3,388<span class="unit"> / 240정</span></div></td>
+            <td>
+              <div class="sales-bar-wrap"><div class="sales-bar" style="width:62%;"></div></div>
+              <div class="sales-num">약 96만 박스 / 년 <span class="unit">· 시니어 신기능</span></div>
+            </td>
+            <td>
+              <span class="composition-trigger">
+                <span class="ico">생약 8</span>
+                <span class="composition-tooltip">
+                  <div class="title">八味地黄丸 구성 8종</div>
+                  <div class="ingredients">
+                    지황 <span class="g">5.0g</span> · 산수유 <span class="g">3.0g</span> · 산약 <span class="g">3.0g</span> · 택사 <span class="g">3.0g</span> · 복령 <span class="g">3.0g</span> · 목단피 <span class="g">3.0g</span> · 계지 <span class="g">1.0g</span> · 부자 <span class="g">1.0g</span>
+                  </div>
+                </span>
+              </span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="brand">코타로 우차신기환</div>
+              <div class="brand-sub">牛車腎気丸エキス錠「コタロー」</div>
+            </td>
+            <td><span class="class">제2류</span></td>
+            <td><div class="otc-price-cell">¥2,750<span class="unit"> / 90정</span></div></td>
+            <td>
+              <div class="sales-bar-wrap"><div class="sales-bar" style="width:55%;"></div></div>
+              <div class="sales-num">약 84만 박스 / 년</div>
+            </td>
+            <td>
+              <span class="composition-trigger">
+                <span class="ico">생약 10</span>
+                <span class="composition-tooltip">
+                  <div class="title">牛車腎気丸 구성 10종</div>
+                  <div class="ingredients">
+                    지황 <span class="g">5.0g</span> · 우슬 <span class="g">3.0g</span> · 차전자 <span class="g">3.0g</span> · 산수유 <span class="g">3.0g</span> · 산약 <span class="g">3.0g</span> · 택사 <span class="g">3.0g</span> · 복령 <span class="g">3.0g</span> · 목단피 <span class="g">3.0g</span> · 계지 <span class="g">1.0g</span> · 부자 <span class="g">1.0g</span>
+                  </div>
+                </span>
+              </span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <div style="font-size:9.5px;color:var(--gray-400);margin-top:8px;">
+        ※ 생약 라벨에 마우스를 올리면 구성 재료가 표시됩니다 (위 표 1위는 데모 상시 표시).
+      </div>
+    </div>
+
+    <!-- 논문 신뢰 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon-square">📑</span>
+        논문 써머리 (오림산 RCT · J-STAGE Top 1)
+        <span class="badge-src">자동 번역 · AI 요약 by Prub MD Engine · 한의사 검수 완료</span>
+      </div>
+      <div class="paper-credibility">
+        <div class="paper-thumb">
+          <div class="lab">SOURCE</div>
+          <div class="src">J-STAGE</div>
+          <div class="yr">2022</div>
+          <div class="meta">Tsumura R&amp;D Study<br/>kampomed 68(2):103</div>
+        </div>
+        <div class="paper-body">
+          <div class="paper-title">
+            五淋散 12주 투여의 시니어 빈뇨·과민성 방광 환자에 대한 무작위 대조 임상시험
+            <span style="font-size:10px;color:var(--gray-500);font-weight:500;display:block;margin-top:2px;">
+              Gorinsan for Senior Urinary Frequency &amp; OAB: A Randomized Controlled Trial (N=142)
+            </span>
+          </div>
+
+          <div class="paper-metrics">
+            <div class="metric"><div class="lab">SAMPLE</div><div class="val">N=142</div></div>
+            <div class="metric orange"><div class="lab">빈뇨 횟수 ↓</div><div class="val">-34<span class="small">%</span></div></div>
+            <div class="metric orange"><div class="lab">잔뇨 VAS ↓</div><div class="val">-38<span class="small">%</span></div></div>
+            <div class="metric orange"><div class="lab">야간뇨 ↓</div><div class="val">-52<span class="small">%</span></div></div>
+            <div class="metric green"><div class="lab">유의확률</div><div class="val">p&lt;0.01</div></div>
+          </div>
+
+          <div class="paper-metrics" style="grid-template-columns:repeat(4,1fr);margin-top:-2px;">
+            <div class="metric green"><div class="lab">NNT</div><div class="val">3.2<span class="small">명</span></div></div>
+            <div class="metric green"><div class="lab">부작용 보고</div><div class="val">0<span class="small"> 건</span></div></div>
+            <div class="metric"><div class="lab">효과 발현</div><div class="val">4<span class="small">주차</span></div></div>
+            <div class="metric"><div class="lab">추적</div><div class="val">12<span class="small">주</span></div></div>
+          </div>
+
+          <div class="paper-comment">
+            <b>임상 적용 코멘트</b> · 12주 시행 빈뇨 환자 <b>3명 중 1명이 정상 회복</b>. 부작용 0건은 시니어 처방에서 결정적 안전성 지표.<br/>
+            연구진은 <b>"빈뇨·OAB 시니어 환자에 한방 1차 약물요법 옵션, 양약 항콜린제 회피 환자 우선 권장"</b>으로 결론. PMDA 첨부문서 안전성 등급 일치.
+          </div>
+
+          <div class="paper-actions">
+            <div class="paper-btn primary">
+              📄 논문 본문 보기 <span class="arrow">→</span>
+            </div>
+            <div class="paper-btn secondary">
+              🌐 한글 번역서비스 제공 <span class="arrow">→</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+
+    <!-- 시점 라벨 추가 -->
+    <div class="stats-card">
+      <div class="as-of">2025 기준</div>
+      <div class="title">일본 빈뇨·OAB 시장 통계</div>
+      <div class="topnum"><div class="v">1,070</div><div class="u">만명</div></div>
+      <div class="label">일본 OAB(과민성 방광) 환자 수</div>
+      <div class="grid-2">
+        <div class="stat-cell">
+          <div class="v">12.4<span style="font-size:11px;">%</span></div>
+          <div class="l">40세 이상 유병률</div>
+        </div>
+        <div class="stat-cell">
+          <div class="v">36.8<span style="font-size:11px;">%</span></div>
+          <div class="l">한방 처방 비중</div>
+        </div>
+      </div>
+      <div class="source">출처: 일본비뇨기과학회 2025 학술대회 · 후생노동성 보고서</div>
+    </div>
+
+    <!-- 처방 비율 -->
+    <div class="section trend-card">
+      <div class="period-tag">FY2024</div>
+      <div class="section-title" style="font-size:11px;margin-bottom:8px;">
+        <span class="icon-square" style="background:#E8F1FB;color:#1457A6;">📊</span>
+        일본 비뇨 한방 처방 비율
+      </div>
+      <div class="row">
+        <div class="name">오림산</div>
+        <div class="bar-wrap"><div class="bar" style="width:92%;background:var(--orange);"></div></div>
+        <div class="v">28.4%</div>
+      </div>
+      <div class="row">
+        <div class="name">저령탕</div>
+        <div class="bar-wrap"><div class="bar" style="width:74%;"></div></div>
+        <div class="v">22.9%</div>
+      </div>
+      <div class="row">
+        <div class="name">팔미지황환</div>
+        <div class="bar-wrap"><div class="bar" style="width:54%;"></div></div>
+        <div class="v">16.7%</div>
+      </div>
+      <div class="row">
+        <div class="name">우차신기환</div>
+        <div class="bar-wrap"><div class="bar" style="width:42%;"></div></div>
+        <div class="v">13.0%</div>
+      </div>
+      <div class="row">
+        <div class="name">청심연자음</div>
+        <div class="bar-wrap"><div class="bar" style="width:31%;"></div></div>
+        <div class="v">9.6%</div>
+      </div>
+      <div class="row">
+        <div class="name">기타 11종</div>
+        <div class="bar-wrap"><div class="bar" style="width:27%;background:var(--gray-400);"></div></div>
+        <div class="v">9.4%</div>
+      </div>
+      <div class="source">기간: 2024 회계연도 · 출처: 츠무라 IR + 일본 보험연구원 추정치</div>
+    </div>
+
+    <!-- 일본 五淋散 시장 매출 — 원방 + 2/3류 OTC Stack -->
+    <div class="section" style="background:linear-gradient(135deg,var(--orange-light) 0%,#fff 100%);border-color:var(--orange-light);position:relative;padding:14px 15px;">
+      <div style="position:absolute;top:14px;right:15px;font-size:10.5px;font-weight:700;color:var(--orange-deep);background:#fff;padding:3px 8px;border-radius:999px;letter-spacing:0.3px;">FY2024</div>
+      <div style="font-size:11.5px;color:var(--orange-deep);font-weight:700;letter-spacing:1px;margin-bottom:10px;">💴 일본 五淋散 시장 매출</div>
+
+      <!-- 원방 NHI -->
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border-radius:8px;border-left:3px solid var(--navy);">
+        <div style="flex:1;">
+          <div style="font-size:10.5px;color:var(--gray-500);font-weight:700;letter-spacing:0.3px;">원방 처방 · NHI 급여</div>
+          <div style="font-size:11.5px;color:var(--gray-700);margin-top:2px;">츠무라 #056 (의료용 엑스 과립)</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="display:flex;align-items:baseline;gap:4px;justify-content:flex-end;">
+            <div style="font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-1px;line-height:1;">42.8</div>
+            <div style="font-size:12px;color:var(--gray-500);">억엔</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2/3류 OTC -->
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border-radius:8px;border-left:3px solid var(--orange);margin-top:7px;">
+        <div style="flex:1;">
+          <div style="font-size:10.5px;color:var(--gray-500);font-weight:700;letter-spacing:0.3px;">2/3류 OTC · 비뇨 카테고리</div>
+          <div style="font-size:11.5px;color:var(--gray-700);margin-top:2px;">코타로·클라시에 등 5종 합</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="display:flex;align-items:baseline;gap:4px;justify-content:flex-end;">
+            <div style="font-size:23px;font-weight:800;color:var(--orange-deep);letter-spacing:-1px;line-height:1;">~50</div>
+            <div style="font-size:12px;color:var(--gray-500);">억엔</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 합계 -->
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 12px;background:var(--navy);border-radius:8px;margin-top:7px;">
+        <div style="flex:1;">
+          <div style="font-size:10.5px;color:rgba(255,255,255,0.7);font-weight:700;letter-spacing:0.3px;">합계 — 비뇨 한방 시장</div>
+          <div style="font-size:11.5px;color:rgba(255,255,255,0.88);margin-top:2px;">원방 + OTC 통합</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="display:flex;align-items:baseline;gap:4px;justify-content:flex-end;">
+            <div style="font-size:25px;font-weight:800;color:var(--orange);letter-spacing:-1px;line-height:1;">~93</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.75);">억엔</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:11.5px;color:var(--gray-700);margin-top:10px;line-height:1.55;padding:0 2px;">
+        츠무라 138개 처방 중 비뇨 카테고리 <b style="color:var(--orange-deep);">원방 매출 1위</b>. NHI 1986년 등재. OTC 시장이 원방보다 큰 카테고리.
+      </div>
+      <div style="font-size:10.5px;color:var(--gray-400);margin-top:5px;">FY2024 · 츠무라 Annual Report + 일본 OTC 시장 보고서 (2/3류는 카테고리 추정치)</div>
+    </div>
+
+    <!-- Quick action -->
+    <div class="section" style="padding:12px;">
+      <div style="font-size:9.5px;color:var(--gray-500);font-weight:700;letter-spacing:1px;margin-bottom:8px;">QUICK ACTION</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="padding:8px 10px;background:var(--orange);color:#fff;border-radius:7px;font-size:11.5px;font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+          <span>📥 오림산 처방 가이드 다운로드</span><span>→</span>
+        </div>
+        <div style="padding:8px 10px;background:var(--gray-100);color:var(--gray-700);border-radius:7px;font-size:11.5px;font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+          <span>💬 한의사 커뮤니티 의견 보기 (47)</span><span>→</span>
+        </div>
+        <div style="padding:8px 10px;background:var(--gray-100);color:var(--gray-700);border-radius:7px;font-size:11.5px;font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+          <span>🔖 즐겨찾기 추가</span><span>+</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Prub PB 섹션 — left 컬럼 폭 매칭 (위 OTC/논문 섹션과 동일) -->
+  <div class="prub-section" style="margin-top:14px;grid-column:1 / 2;">
+  <div class="section-title" style="margin-bottom:10px;">
+    <span class="icon-square" style="background:var(--orange);color:#fff;">P</span>
+    Prub PB — "빈뇨" 검색 매칭 자체 라인업
+    <span class="badge-src" style="background:var(--orange-light);color:var(--orange-deep);font-weight:600;">한국 PB 후보 · 세명대 공동 SCI 논문 발표 진행 중</span>
+  </div>
+
+  <div class="prub-layout">
+
+    <!-- 좌측: 오림산 메인 카드 -->
+    <div class="pb-main">
+      <div class="rank">★ 메인 PB · 검색 적응증 매칭</div>
+      <div class="name">오림산 (五淋散)</div>
+      <div class="name-en">Tsumura #056 · Gorinsan · 한방 PB 후보 NO.1</div>
+
+      <div class="pb-disease-row">
+        <div class="pb-disease">
+          <div class="l">대표 주병</div>
+          <div class="v">빈뇨 · 배뇨통 · 잔뇨감 · 야간뇨</div>
+        </div>
+        <div class="pb-clinic">
+          <div class="l">설명한의원 임상 풀</div>
+          <div class="v"><span class="h">500명+</span> / 월 · 시니어 65세 이상</div>
+        </div>
+      </div>
+
+      <!-- Why this PB matters — 한의사에게 어필 -->
+      <div style="margin-top:13px;padding:14px 16px;background:linear-gradient(135deg,#FFF8EE 0%,#fff 100%);border:1px solid var(--orange-light);border-radius:10px;">
+        <div style="font-size:11.5px;color:var(--orange-deep);font-weight:700;letter-spacing:0.8px;margin-bottom:10px;">💡 WHY THIS PB MATTERS</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          <!-- 1번 카드: 임상 운영 데이터 (우리것 어필) -->
+          <div style="padding:13px 14px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);border-radius:9px;color:#fff;border-top:3px solid var(--navy);">
+            <div style="font-size:11.5px;color:var(--orange-light);font-weight:700;letter-spacing:0.5px;">📊 임상 운영 데이터</div>
+            <div style="font-size:18px;font-weight:800;margin-top:6px;line-height:1.3;letter-spacing:-0.3px;">설명한의원 임상풀<br/><span style="color:var(--orange);">500명+ / 월</span></div>
+            <div style="font-size:12.5px;opacity:0.82;margin-top:7px;line-height:1.5;">시니어 65세 이상 누적<br/>실제 처방 데이터 축적 중</div>
+          </div>
+          <!-- 2번 카드: 한국 학술 -->
+          <div style="padding:13px 14px;background:#fff;border-radius:9px;border-top:3px solid var(--navy);">
+            <div style="font-size:11.5px;color:var(--navy);font-weight:700;letter-spacing:0.5px;">📚 한국 학술</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);margin-top:6px;line-height:1.35;">세명대 공동 SCI 논문</div>
+            <div style="font-size:12.5px;color:var(--gray-700);margin-top:7px;line-height:1.55;">발표 진행 중<br/>한국 학술 신뢰 확보</div>
+          </div>
+          <!-- 3번 카드: 한국식 강화 -->
+          <div style="padding:13px 14px;background:#fff;border-radius:9px;border-top:3px solid var(--navy);">
+            <div style="font-size:11.5px;color:var(--navy);font-weight:700;letter-spacing:0.5px;">🔬 한국식 강화</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);margin-top:6px;line-height:1.35;">발효 기전 연구</div>
+            <div style="font-size:12.5px;color:var(--gray-700);margin-top:7px;line-height:1.55;">국립호남권생물자원관<br/>한국식 발효로 효과 극대화</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:11.5px;color:var(--gray-500);font-weight:700;letter-spacing:0.5px;margin:13px 0 6px;">R&amp;D PIPELINE</div>
+      <div class="pb-pipeline">
+        <span class="pipe-tag done">✓ 처방 선정</span>
+        <span class="pipe-tag done">✓ NHI 검증</span>
+        <span class="pipe-tag active">▶ SCI 논문 진행</span>
+        <span class="pipe-tag">기전 연구</span>
+        <span class="pipe-tag">한국 출시</span>
+      </div>
+    </div>
+
+  </div>
+</div>  <!-- /.prub-section -->
+</div>  <!-- /.main -->
+
+<!-- footer -->
+<div class="footer">
+  <div>Prub MD · 일본 한방 의료 정보 멤버십 · PB Master DB 1,040 처방 매핑 + Retail Intel 998 OTC</div>
+  <div>Copyright © 2026 Prub Inc. All rights reserved.</div>
+</div>
+
+</body>
+</html>
