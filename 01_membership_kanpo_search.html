@@ -946,15 +946,15 @@
     <div class="section">
       <div class="section-title">
         <span class="icon-square">💊</span>
-        Prub 한국 출시 후보 처방 (시니어 비뇨)
-        <span class="badge-src">동의보감 五淋論 + 한국 임상 + 일본 OTC 채널 검증 (PB Master DB)</span>
+        Prub 추천 처방 (빈뇨 매칭) — 시니어 비뇨
+        <span class="badge-src">동의보감 五淋論 + 일본 OTC 채널 데이터 (Sheets PB Master DB · 1,040 처방)</span>
       </div>
       <div class="rx-grid">
 
         <div class="rx-card featured">
           <div class="rx-card-head">
             <span class="rx-tj">TJ-56</span>
-            <span class="rx-rank featured">★ #1 출시 후보 · OTC ★★★</span>
+            <span class="rx-rank featured">★ #1 매칭 · OTC ★★★</span>
           </div>
           <div class="rx-name-kr">오림산</div>
           <div class="rx-name-jp">五淋散 (ごりんさん) · Gorinsan</div>
@@ -976,7 +976,7 @@
         <div class="rx-card">
           <div class="rx-card-head">
             <span class="rx-tj">TJ-40</span>
-            <span class="rx-rank">#2 출시 후보 · OTC ★★</span>
+            <span class="rx-rank">#2 매칭 · OTC ★★</span>
           </div>
           <div class="rx-name-kr">저령탕</div>
           <div class="rx-name-jp">猪苓湯 (ちょれいとう)</div>
@@ -1355,70 +1355,107 @@
 
   </div>
 
-  <!-- Prub PB 섹션 — left 컬럼 폭 매칭 (위 OTC/논문 섹션과 동일) -->
-  <div class="prub-section" style="margin-top:14px;grid-column:1 / 2;">
-  <div class="section-title" style="margin-bottom:10px;">
-    <span class="icon-square" style="background:var(--orange);color:#fff;">P</span>
-    Prub PB — "빈뇨" 검색 매칭 자체 라인업
-    <span class="badge-src" style="background:var(--orange-light);color:var(--orange-deep);font-weight:600;">한국 PB 후보 · 세명대 공동 SCI 논문 발표 진행 중</span>
-  </div>
-
-  <div class="prub-layout">
-
-    <!-- 좌측: 오림산 메인 카드 -->
-    <div class="pb-main">
-      <div class="rank">★ 메인 PB · 검색 적응증 매칭</div>
-      <div class="name">오림산 (五淋散)</div>
-      <div class="name-en">Tsumura #056 · Gorinsan · 한방 PB 후보 NO.1</div>
-
-      <div class="pb-disease-row">
-        <div class="pb-disease">
-          <div class="l">대표 주병</div>
-          <div class="v">빈뇨 · 배뇨통 · 잔뇨감 · 야간뇨</div>
-        </div>
-        <div class="pb-clinic">
-          <div class="l">설명한의원 임상 풀</div>
-          <div class="v"><span class="h">500명+</span> / 월 · 시니어 65세 이상</div>
-        </div>
-      </div>
-
-      <!-- Why this PB matters — 한의사에게 어필 -->
-      <div style="margin-top:13px;padding:14px 16px;background:linear-gradient(135deg,#FFF8EE 0%,#fff 100%);border:1px solid var(--orange-light);border-radius:10px;">
-        <div style="font-size:11.5px;color:var(--orange-deep);font-weight:700;letter-spacing:0.8px;margin-bottom:10px;">💡 WHY THIS PB MATTERS</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-          <!-- 1번 카드: 임상 운영 데이터 (우리것 어필) -->
-          <div style="padding:13px 14px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);border-radius:9px;color:#fff;border-top:3px solid var(--navy);">
-            <div style="font-size:11.5px;color:var(--orange-light);font-weight:700;letter-spacing:0.5px;">📊 임상 운영 데이터</div>
-            <div style="font-size:18px;font-weight:800;margin-top:6px;line-height:1.3;letter-spacing:-0.3px;">설명한의원 임상풀<br/><span style="color:var(--orange);">500명+ / 월</span></div>
-            <div style="font-size:12.5px;opacity:0.82;margin-top:7px;line-height:1.5;">시니어 65세 이상 누적<br/>실제 처방 데이터 축적 중</div>
-          </div>
-          <!-- 2번 카드: 한국 학술 -->
-          <div style="padding:13px 14px;background:#fff;border-radius:9px;border-top:3px solid var(--navy);">
-            <div style="font-size:11.5px;color:var(--navy);font-weight:700;letter-spacing:0.5px;">📚 한국 학술</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);margin-top:6px;line-height:1.35;">세명대 공동 SCI 논문</div>
-            <div style="font-size:12.5px;color:var(--gray-700);margin-top:7px;line-height:1.55;">발표 진행 중<br/>한국 학술 신뢰 확보</div>
-          </div>
-          <!-- 3번 카드: 한국식 강화 -->
-          <div style="padding:13px 14px;background:#fff;border-radius:9px;border-top:3px solid var(--navy);">
-            <div style="font-size:11.5px;color:var(--navy);font-weight:700;letter-spacing:0.5px;">🔬 한국식 강화</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);margin-top:6px;line-height:1.35;">발효 기전 연구</div>
-            <div style="font-size:12.5px;color:var(--gray-700);margin-top:7px;line-height:1.55;">국립호남권생물자원관<br/>한국식 발효로 효과 극대화</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="font-size:11.5px;color:var(--gray-500);font-weight:700;letter-spacing:0.5px;margin:13px 0 6px;">R&amp;D PIPELINE</div>
-      <div class="pb-pipeline">
-        <span class="pipe-tag done">✓ 처방 선정</span>
-        <span class="pipe-tag done">✓ NHI 검증</span>
-        <span class="pipe-tag active">▶ SCI 논문 진행</span>
-        <span class="pipe-tag">기전 연구</span>
-        <span class="pipe-tag">한국 출시</span>
-      </div>
+  <!-- 출처 자동 매칭 — 옵션 C: Pinecone 의미 검색 (검색어 "빈뇨" 매칭 결과) -->
+  <div class="section" style="margin-top:14px;grid-column:1 / 2;">
+    <div class="section-title">
+      <span class="icon-square">📚</span>
+      출처 자동 매칭 — "빈뇨" Pinecone 의미 검색 (8건)
+      <span class="badge-src">prub_archive ns · 메타+요약+백워드만 · 저작권법 30조의4 안전 패턴</span>
     </div>
 
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+
+      <!-- 학술 매칭 3건 -->
+      <div style="padding:14px 16px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div style="font-size:11.5px;color:var(--navy);font-weight:700;letter-spacing:0.5px;">🏛 학술 매칭 (3건)</div>
+          <span class="chip" style="font-size:10px;">J-STAGE 2 · PubMed 1</span>
+        </div>
+
+        <article style="padding:9px 0;border-bottom:1px solid var(--gray-100);">
+          <div style="font-size:11.5px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:3px;">오림산의 시니어 야간뇨 RCT — 8주 추적</div>
+          <div style="font-size:10px;color:var(--gray-500);margin-bottom:4px;">J-STAGE · kampomed 68(2):103 · 2022 · 매칭 94%</div>
+          <div style="font-size:10.5px;color:var(--gray-700);line-height:1.4;">N=87 시니어 환자 오림산 8주 투여, 야간뇨 -47% 호전. 부작용 0건.</div>
+          <a href="#" style="font-size:10px;color:var(--navy);font-weight:600;text-decoration:none;">→ J-STAGE 원문</a>
+        </article>
+
+        <article style="padding:9px 0;border-bottom:1px solid var(--gray-100);">
+          <div style="font-size:11.5px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:3px;">猪苓湯による頻尿改善の機序</div>
+          <div style="font-size:10px;color:var(--gray-500);margin-bottom:4px;">J-STAGE · 和漢医薬学雑誌 · 2021 · 매칭 88%</div>
+          <div style="font-size:10.5px;color:var(--gray-700);line-height:1.4;">저령탕 5 생약의 이뇨·소염 기전. 동물 모델 + 임상 관찰 3건.</div>
+          <a href="#" style="font-size:10px;color:var(--navy);font-weight:600;text-decoration:none;">→ J-STAGE 원문</a>
+        </article>
+
+        <article style="padding:9px 0;">
+          <div style="font-size:11.5px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:3px;">Kampo for OAB in elderly: systematic review</div>
+          <div style="font-size:10px;color:var(--gray-500);margin-bottom:4px;">PubMed · J Ethnopharmacol · 2023 · 매칭 82%</div>
+          <div style="font-size:10.5px;color:var(--gray-700);line-height:1.4;">시니어 과민성 방광 한방 SR 12편 메타 — 오림산·청심연자음 우위.</div>
+          <a href="#" style="font-size:10px;color:var(--navy);font-weight:600;text-decoration:none;">→ PubMed PMID</a>
+        </article>
+      </div>
+
+      <!-- 공식 해설 매칭 2건 -->
+      <div style="padding:14px 16px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div style="font-size:11.5px;color:var(--navy);font-weight:700;letter-spacing:0.5px;">💊 공식 해설 (2건)</div>
+          <span class="chip" style="font-size:10px;">츠무라 1 · 클라시에 1</span>
+        </div>
+
+        <article style="padding:9px 0;border-bottom:1px solid var(--gray-100);">
+          <div style="font-size:11.5px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:3px;">五淋散の使い分け — 빈뇨·배뇨통의 처방 선택</div>
+          <div style="font-size:10px;color:var(--gray-500);margin-bottom:4px;">츠무라 漢方ビュー · 처방 해설 · 매칭 92%</div>
+          <div style="font-size:10.5px;color:var(--gray-700);line-height:1.4;">오림산 vs 저령탕 vs 청심연자음 임상 분기 — 체질·증상별 가이드.</div>
+          <a href="https://www.tsumura.co.jp/kampo-view/" target="_blank" style="font-size:10px;color:var(--navy);font-weight:600;text-decoration:none;">→ 츠무라 원문</a>
+        </article>
+
+        <article style="padding:9px 0;">
+          <div style="font-size:11.5px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:3px;">頻尿に効く漢方 — 일상 증상별 추천</div>
+          <div style="font-size:10px;color:var(--gray-500);margin-bottom:4px;">클라시에 漢方ナビ · 일상 가이드 · 매칭 85%</div>
+          <div style="font-size:10.5px;color:var(--gray-700);line-height:1.4;">60초 체질 진단 + 빈뇨 패턴별(冷え·疲れ·ストレス) 처방 추천.</div>
+          <a href="https://www.kracie.co.jp/kampo/kampo-nabi/" target="_blank" style="font-size:10px;color:var(--navy);font-weight:600;text-decoration:none;">→ 클라시에 원문</a>
+        </article>
+
+        <div style="margin-top:10px;padding-top:9px;border-top:1px dashed var(--gray-200);font-size:10px;color:var(--gray-500);line-height:1.5;">
+          + NIKKANKYO OTC 39 처방 가이드 (매칭 71% 이하, 노출 제외)
+        </div>
+      </div>
+
+      <!-- 임상 증례 매칭 3건 -->
+      <div style="padding:14px 16px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div style="font-size:11.5px;color:var(--navy);font-weight:700;letter-spacing:0.5px;">📋 임상 증례 (3건)</div>
+          <span class="chip" style="font-size:10px;">이스쿠라 1 · 백명점 1 · kampo-s 1</span>
+        </div>
+
+        <article style="padding:9px 0;border-bottom:1px solid var(--gray-100);">
+          <div style="font-size:11.5px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:3px;">70대 여성 야간뇨 4회 → 오림산 8주 호전</div>
+          <div style="font-size:10px;color:var(--gray-500);margin-bottom:4px;">이스쿠라 漢方 · 신주쿠점 · 2024.03 · 매칭 96%</div>
+          <div style="font-size:10.5px;color:var(--gray-700);line-height:1.4;">시니어 여성 야간뇨 + 잔뇨감 → 오림산 단방, 8주 야간뇨 1~2회로 감소.</div>
+          <a href="https://www.ikanpo.jp/" target="_blank" style="font-size:10px;color:var(--navy);font-weight:600;text-decoration:none;">→ 이스쿠라 증례</a>
+        </article>
+
+        <article style="padding:9px 0;border-bottom:1px solid var(--gray-100);">
+          <div style="font-size:11.5px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:3px;">전립선 비대 + 빈뇨 → 청심연자음 합방</div>
+          <div style="font-size:10px;color:var(--gray-500);margin-bottom:4px;">漢方百名店 · 中島薬局 · 2024.01 · 매칭 91%</div>
+          <div style="font-size:10.5px;color:var(--gray-700);line-height:1.4;">60대 남성 BPH + 빈뇨 → 청심연자음 + 팔미환 합방 12주 호전.</div>
+          <a href="https://kampo-hyakumeiten.jp/" target="_blank" style="font-size:10px;color:var(--navy);font-weight:600;text-decoration:none;">→ 백명점 증례</a>
+        </article>
+
+        <article style="padding:9px 0;">
+          <div style="font-size:11.5px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:3px;">급한 요의 빈뇨 → 저령탕 (증례 #847)</div>
+          <div style="font-size:10px;color:var(--gray-500);margin-bottom:4px;">kampo-s 미디어 · 처방 라이브러리 · 매칭 87%</div>
+          <div style="font-size:10.5px;color:var(--gray-700);line-height:1.4;">40대 남성 요의절박 + 빈뇨 → 저령탕 4주 호전. 약사 칼럼.</div>
+          <a href="https://www.kampo-s.jp/" target="_blank" style="font-size:10px;color:var(--navy);font-weight:600;text-decoration:none;">→ kampo-s 증례</a>
+        </article>
+      </div>
+
+    </div>
+
+    <div style="margin-top:12px;padding:10px 14px;background:var(--gray-100);border-radius:8px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:10.5px;color:var(--gray-700);">⚙ Pinecone <code style="background:#fff;padding:2px 6px;border-radius:4px;font-size:10px;">prub_archive</code> ns · 임베딩 <code style="background:#fff;padding:2px 6px;border-radius:4px;font-size:10px;">text-embedding-3-large</code> · 매칭 80%+ 노출</div>
+      <a href="#" style="font-size:10.5px;color:var(--navy);font-weight:700;text-decoration:none;">→ 더 보기 (전체 결과)</a>
+    </div>
   </div>
-</div>  <!-- /.prub-section -->
 </div>  <!-- /.main -->
 
 <!-- footer -->
